@@ -1,0 +1,45 @@
+h1{
+    font-family:  sans-serif;
+    font-size: 7vw;
+    color: brown;
+}
+
+p,h2,div{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+
+}
+
+strong{
+    font-style: italic;
+}
+
+.seznam{
+    font-size: 3em;
+}
+
+.vstup{
+    font-family: system-ui;
+    font-size: 1.5em;
+    
+}
+
+#jmeno{
+    background-color: #B5651d;
+}
+
+table, td, th{
+    font-size: 2rem;
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+
+thead{
+    background-color: darkgrey;
+    color: white;
+}
+
+tbody{
+    background-color: white;
+    color: darkgray;
+}
