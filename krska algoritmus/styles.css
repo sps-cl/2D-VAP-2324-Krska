@@ -1,0 +1,26 @@
+:root{
+  --max-value: 20;
+}
+
+.container{
+  --item-count:10;
+  --container-width: 700px;
+  --container-height: 450px;
+  --item-width: calc(var(--container-width) / var(--item-count));
+  position: relative;
+  width: calc(var(--container-width) + 1.5px);
+  height: var(--container-height);
+  background-color: rgb(65, 65, 65);
+}
+
+.item{
+  --x: 0;
+  --value: 20;
+  height: calc(var(--container-height) * var(--value) / var(--max-value) - 1.5px);
+  position: absolute;
+  width: var(--item-width);
+  bottom: 0px;
+  background-color: rgb(0, 136, 255);
+  border: 1px solid rgb(54, 54, 54);
+  left: calc(var(--item-width) * var(--x));
+}
