@@ -1,0 +1,63 @@
+.inline-container, .inline-block-container, .block-container,  .flex-container{
+    outline-width: 1px;
+    outline-color: black;
+}
+
+.inline-div:hover{
+    background-color: purple;
+}
+.inline-block-div:hover{
+    background-color: purple;
+}
+.block-div:hover{
+    background-color: purple;
+}
+.flex-div:hover{
+    background-color: purple;
+}
+
+
+.inline-div,.inline-block-div,.block-div,.flex-div{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    text-align: center;
+    color: gray;
+    font-family: monospace;
+    font-size: 2rem;
+    animation-name: anim;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition: background-color 3s;
+    display: inline-block;
+
+}
+
+.inline-div{
+    background-color: black;
+}
+
+.inline-block-div{
+    background-color: red;
+
+}
+
+.block-div{
+    background-color: green;
+}
+
+.flex-div{
+    background-color: blue;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@keyframes anim {
+    0%{width: 100px;}
+    100%{width: 200px; }
+    
+}
