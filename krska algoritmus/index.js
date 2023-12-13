@@ -1,5 +1,6 @@
 let bubbleSortContainer = document.getElementById("bubblesort-div");
 let insertionSortContainer = document.getElementById("insertionSort-div");
+let shellSortContainer = document.getElementById("shellSort-div");
 
 let max = 30;
 document.documentElement.style.setProperty("--max-value", max)
@@ -19,3 +20,6 @@ bubbleSort.sortAsc();
 
 let insertionSort = new InsertionSortAnim(array, insertionSortContainer);
 insertionSort.sortAsc();
+
+let shellSort = new ShellSortAnim(array, shellSortContainer);
+shellSort.sortAsc();

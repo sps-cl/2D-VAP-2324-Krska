@@ -12,7 +12,6 @@ class InsertionSortAnim extends sortAnim {
                 this.swapValues(j,j + 1)
                 j--
             }
-
         }
         for (let index = 0; index < i; index++) {
             this.setSortedColor(this.columns[index]);
