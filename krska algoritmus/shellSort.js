@@ -2,7 +2,7 @@ class ShellSortAnim extends sortAnim {
     async sortAsc(){
         for (var gap = this.values.length>>1; gap > 0; gap >>= 1) {
             for (var i = gap; i < this.values.length; i++){
-                let j = i -gap;
+                let j = i - gap;
                 while(j>= 0 && this.values[j] > this.values[j + gap]){
                     this.setCompareColor(this.columns[j]);
                     this.setCompareColor(this.columns[j+ gap]);
