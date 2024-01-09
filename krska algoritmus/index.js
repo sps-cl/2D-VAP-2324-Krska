@@ -2,6 +2,7 @@ let bubbleSortContainer = document.getElementById("bubblesort-div");
 let insertionSortContainer = document.getElementById("insertionSort-div");
 let shellSortContainer = document.getElementById("shellSort-div");
 let quickSortContainer = document.getElementById("quickSort-div");
+let mergeSortContainer = document.getElementById("mergeSort-div");
 
 let max = 30;
 document.documentElement.style.setProperty("--max-value", max)
@@ -27,3 +28,6 @@ shellSort.sortAsc();
 
 let quickSort = new QuickSortAnim(array, quickSortContainer);
 quickSort.sortAsc();
+
+let mergeSort = new MergeSortAnim(array, mergeSortContainer);
+mergeSort.sortAsc();
