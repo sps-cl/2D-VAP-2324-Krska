@@ -1,32 +1,40 @@
 class QuickSortAnim extends sortAnim {
     
     async sortAsc(){
-        this.sortRecursive(this.values,0,this.values.length - 1)
+        this.sortRecursive(0,this.values.length - 1)
     }
 
-    async sortRecursive(){
+    async sortRecursive(low, high){
+
         if(low<high){
-            let pi = this.partitionomuto(this.values, low, high)
-            this.sortRecursive(this.values, low, pi -1)
-            this.sortRecursive(this.values, pi + 1, high)
+            let pi = await this.partitionomuto(low, high)
+            await this.sortRecursive(low, pi -1)
+            await this.sortRecursive(pi + 1, high)
+        }
+        else if (low == high){
+            this.setSortedColor(this.columns[low])
         }
     }
 
-    async partitionomuto(  low, high){
+    async partitionomuto(low, high){
         let pivot = this.values[high]
-        let pi = low - 1
+        let pi = low;
+        this.setCompareColor(this.columns[high])
         for(let i = low; i < high; i++){
+            this.setCompareColor(this.columns[i])
+            await this.sleep(50)
+            this.setDefaultColor(this.columns[i])
             if(this.values[i] < pivot) {
+                this.swapValues(i,pi)
                 pi++
-                [this.values[i],this.values[pi]]=[this.values[pi],this.values[i]]
             }
         }
+        this.setSortedColor(this.columns[high])
+        this.swapValues(pi, high);
+        await this.sleep(50)
+        return pi;
     }
          
-    /*
-    for (let index = 0; index < i; index++) {
-        this.setSortedColor(this.columns[index]);
-        
-    }
-    */
+
+    
 }

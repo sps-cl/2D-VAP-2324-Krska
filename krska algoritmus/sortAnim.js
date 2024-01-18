@@ -30,6 +30,11 @@ class sortAnim{
         this.columns[i].style.setProperty("--x", i);
         this.columns[j].style.setProperty("--x", j);
     }
+    
+    setValue(i, value) {
+        this.values[i] = value
+        this.columns[i].style.setProperty("--value", value);
+    }
 
     setCompareColor(div){
         div.style.backgroundColor = "yellow";

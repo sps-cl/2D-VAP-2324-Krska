@@ -1,4 +1,4 @@
 function vytvoritTabulku() {
-    let pocetRadku = Number(document.getElementById("pocet-radku").value);
-    let pocetSlopcu = Number(document.getElementById("pocet-slopcu").value);
+    let pocetRadku = (document.getElementById("pocet-radku").value);
+    let pocetSlopcu = (document.getElementById("pocet-slopcu").value);
 }
