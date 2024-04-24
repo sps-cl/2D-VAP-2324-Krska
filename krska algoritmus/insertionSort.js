@@ -6,7 +6,7 @@ class InsertionSortAnim extends sortAnim {
             while(j>= 0 && this.values[j] > this.values[j + 1]){
                 this.setCompareColor(this.columns[j]);
                 this.setCompareColor(this.columns[j+1]);
-                await this.sleep(100);
+                await this.sleep(1);
                 this.setDefaultColor(this.columns[j]);
                 this.setDefaultColor(this.columns[j+1]);
                 this.swapValues(j,j + 1)
