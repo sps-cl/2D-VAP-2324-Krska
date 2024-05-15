@@ -8,7 +8,7 @@ class BubbleSortAnim extends sortAnim {
             for (let j = 1; j < bound; j++) {
                 this.setCompareColor(this.columns[j - 1]);
                 this.setCompareColor(this.columns[j]);
-                await this.sleep(100);
+                await this.sleep(1);
                 this.setDefaultColor(this.columns[j - 1]);
                 this.setDefaultColor(this.columns[j]);
                 if (this.values[j - 1] > this.values[j]) {
