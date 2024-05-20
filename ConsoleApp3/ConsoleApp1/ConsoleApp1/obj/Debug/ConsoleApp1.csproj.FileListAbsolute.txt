@@ -1,0 +1,6 @@
+R:\2.D\VAP\ConsoleApp3\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+R:\2.D\VAP\ConsoleApp3\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+R:\2.D\VAP\ConsoleApp3\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+R:\2.D\VAP\ConsoleApp3\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csprojResolveAssemblyReference.cache
+R:\2.D\VAP\ConsoleApp3\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+R:\2.D\VAP\ConsoleApp3\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
