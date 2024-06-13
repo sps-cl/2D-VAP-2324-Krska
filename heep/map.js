@@ -4,8 +4,6 @@ class PathMap {
         this.height = height;//počet buněk ve výšce
         this.cellSize = cellSize;//velikost jedné buňky
 
-        this.heap = new BinaryHeap(width * height);
-
         this.canvas = document.createElement('canvas');
         this.context = this.canvas.getContext('2d');
         
@@ -45,21 +43,23 @@ class PathMap {
             y = Math.floor(y / cellSize);//výpočet indexu buňky z pixelů v ose y
             if (x >= this.width || y >= this.height) return;
             this.selectedMethod(x, y);
-            //3. při detekci změny v mapě provedete automaticky překreslení trasy
+
+            this.#redrawMap();
+            this.drawPath();
         });
 
         window.addEventListener('keydown', (event) => {
             switch(event.key.toLowerCase()) {
-                case 'w':
+                case 'w': //Wall
                     this.selectedMethod = this.#addWall;
                     break;
-                case 'e':
+                case 'e': //Empty
                     this.selectedMethod = this.#removeWall;
                     break;
-                case 's':
+                case 's': //Start
                     this.selectedMethod = this.#setStart;
                     break;
-                case 't':
+                case 't': //Target
                     this.selectedMethod = this.#setTarget;
                     break;    
             }
@@ -72,6 +72,8 @@ class PathMap {
         this.#drawCell(this.target, 'green');
 
         document.body.appendChild(this.canvas);
+
+        this.drawPath();
     }
 
     #addWall(x, y) {
@@ -135,63 +137,49 @@ class PathMap {
             this.#drawLine(x * this.cellSize, 0, x * this.cellSize, this.height * this.cellSize);  
         }
     }
+    #redrawMap() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.#drawLayout();
+        for (let x = 0; x < this.cells.length; x++) {
+            for (let y = 0; y < this.cells[x].length; y++){
+                if(this.cells[x][y].wall) this.#drawCell(this.cells[x][y], "black");
+            }
+        }
+        this.#drawCell(this.start, 'red');
+        this.#drawCell(this.target, 'green');
+    }
 
     findPath() {
-        //2. upravte tuto metodu takovým zůsobem, aby místo pole (cellList) používala strukturu Binary Heap
-        this.heap.clear();
-        let cellList = [];//nebude potřeba, protože buňky budou ukládány do haldy
-        cellList.push(this.start);
+        let cellHeap = new BinaryHeap(this.width * this.height);
+        cellHeap.add(this.start);
         let closedCells = new Set();
-        while(cellList.length > 0) {
-            //celá část vyhledávání a odstranění nejlepší buňky
-            //bude nahrazena načtením buňky z binární haldy
-            let bestCell = cellList[0];//proměnná ve které bude uložena nejvýhodnější buňka
-            let bestIndex = 0;//pozice nejvýhodnější buňky v seznamu přístupných buňek
-            for (let i = 1; i < cellList.length; i++) {//cyklus zjišťující, která buňky je tou nejbližší
-                if (bestCell.compareTo(cellList[i]) > 0) {
-                    bestCell = cellList[i];
-                    bestIndex = i;
-                }
-            }
-            cellList.splice(bestIndex, 1);//odstranění nejlepší buňky z přístupných
-            
-            closedCells.add(bestCell);//uzavření jelepší buňky
-            
-            if (bestCell === this.target) {
-                return bestCell;
-            }
+        while(cellHeap.count > 0) {
+            let bestCell = cellHeap.get();
+            closedCells.add(bestCell);
+            if (bestCell === this.target) return bestCell;
             let neighbours = this.getNeighbours(bestCell);
             for (let i = 0; i < neighbours.length; i++) {
                 const neighbour = neighbours[i];
-                if (closedCells.has(neighbour)) continue;//ignorace již navštívených buňek
-                //to jestli byla buňka již přidána zjistíte pomocí metody z binární haldy
-                let inList = cellList.includes(neighbour);//zjištění, zda se soused již nachazí v dostupných buňkách
-                let startDistance = bestCell.startDistance + this.getDistance(neighbour, bestCell);//vyhodnocení vzdálenosti souseda od startu
+                if (closedCells.has(neighbour)) continue; 
+                let inList = cellHeap.contains(neighbour);
+                let startDistance = bestCell.startDistance + this.getDistance(neighbour, bestCell);
                 if (!inList || startDistance < neighbour.startDistance) {
-                    neighbour.startDistance = startDistance;//přenastavení vzdálenosti od startu
-                    neighbour.endDistance = this.getDistance(neighbour, this.target);//získání vzdálenosti do konce
-                    neighbour.next = bestCell;//propojení souseda s aktuální buňkou
-                    //po aktualizaci hodnot vložte prvek do binární bez jakékoliv kontroli
-                    if (!inList) {//pokud není soused již mezi přístupnými buňkami
-                        cellList.push(neighbour);//pak je do přístupných buňek přidán
-                    }
+                    neighbour.startDistance = startDistance;
+                    neighbour.endDistance = this.getDistance(neighbour, this.target);
+                    neighbour.next = bestCell
+                    cellHeap.add(neighbour);
                 }
             }
         }
     }
-
     drawPath() {
-        //1. rozšiřte tuto funkci takovým způsobem, aby před vykreslením nové trasy smazala trasu starou
-        //starou trasu získáte pomocí atributu this.target - před vyhledáním nové trasy obsahuje jeho
-        //atribut next odkaz na buňky původní trasy
         let path = this.findPath();
-        if (path) {
-            let cell = path.next;
-            while(cell != this.start) {
-                this.#drawCell(cell, 'yellow');
-                cell = cell.next;
-            }
+        if(!path) return false; 
+        while (path.next != this.start) {
+            path = path.next;
+            this.#drawCell(path, "yellow");
         }
+        return true;
     }
 
     getNeighbours(cell) {
