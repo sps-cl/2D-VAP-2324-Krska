@@ -1,24 +1,27 @@
 class Cell{
-    constructor (x,y){
-        this.x = x // pozice v mape x
-        this.y = y// pozice v mape y
-        this.wall = false //zda je bunkda pristupna pro hledani trasy
-        this.startDistance = 0 // vzdalenost od startu
-        this.endDistant = 0//vzdalenost od konce
-        this.heepIndex = 0
-        this.next = null
-
+    constructor(x, y) {
+        this.x = x;//pozice v mapě - x
+        this.y = y;//pozice v mapě - y
+        this.wall = false;//zda je buňka přístupná pro hledání trasy
+        this.startDistance = 0;//vzdálenost od počátku trasy
+        this.endDistance = 0;//vzdálenost od konce trasy
+        this.heapIndex = 0;//index buňky v binární haldě
+        
+        //atribut pro propojení buněk do spojového seznamu
+        //abychom dokázeli rekonstruovat vypočtenou trasu
+        this.next = null;
     }
 
-    get distance() { //getter vracejici cekovou vzdalenost bunky
-        return this.startDistance + this.endDistant
+    get distance() {//getter vracející celkovou vzdálenost buňky 
+        return this.startDistance + this.endDistance;
     }
 
-    compareTO(other){
-        if (this.distance < other.distance) return -1
-        if (this.distance > other.distance) return 1
-        if (this.startDistance < other.startDistance) return -1
-        if (this.startDistance > other.startDistance) return 1
-        return 0
+    compareTo(other) {//metoda pro porovnání buněk mezi sobou
+        //other je instancí třídy Cell
+        if (this.distance < other.distance) return -1;
+        if (this.distance > other.distance) return 1;
+        if (this.startDistance < other.startDistance) return -1;
+        if (this.startDistance > other.startDistance) return 1;
+        return 0;
     }
 }
