@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v6.0": {},
+    ".NETFramework,Version=v6.0/win7-x86": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v6.0": []
+  },
+  "packageFolders": {
+    "C:\\Users\\adam.krska\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "R:\\2.D\\PRO\\kodovani\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
+      "projectName": "ConsoleApp2",
+      "projectPath": "R:\\2.D\\PRO\\kodovani\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
+      "outputPath": "R:\\2.D\\PRO\\kodovani\\ConsoleApp2\\ConsoleApp2\\obj\\",
+      "projectStyle": "PackageReference",
+      "originalTargetFrameworks": [
+        "net60"
+      ],
+      "frameworks": {
+        "net60": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net60": {}
+    },
+    "runtimes": {
+      "win7-x86": {
+        "#import": []
+      }
+    }
+  }
+}
